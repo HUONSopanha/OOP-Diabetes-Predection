@@ -4,6 +4,7 @@ from .models import DiabetesPrediction
 
 
 def home_screen_view(request):
+    # hello, if you see this please respond
     if request.method == 'POST':
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
