@@ -9,7 +9,7 @@ def home_screen_view(request):
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         sex = request.POST.get('sex')
-        age = int(request.POST.get('age'))
+        dob = (request.POST.get('age'))
         glucose = float(request.POST.get('glucose'))
         skin_thickness = float(request.POST.get('skin_thickness'))
         
@@ -26,7 +26,7 @@ def home_screen_view(request):
             first_name=first_name,
             last_name=last_name,
             sex=sex,
-            age=age,
+            dob = dob,
             glucose=glucose,
             skin_thickness=skin_thickness,
             num_pregnancies=num_pregnancies,

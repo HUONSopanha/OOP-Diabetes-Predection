@@ -9,7 +9,7 @@ class DiabetesPrediction(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
     sex = models.CharField(max_length=10, choices=SEX_CHOICES)
-    age = models.IntegerField()
+    dob = models.DateField()
     glucose = models.FloatField()
     skin_thickness = models.FloatField()
     num_pregnancies = models.IntegerField()
