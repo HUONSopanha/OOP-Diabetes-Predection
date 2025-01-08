@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Prediction</title>
+    <link rel="icon" href="diabetes_prediction/Templete/336669371_5985299991565520_8484498353190338136_n.jpg" type="image/x-icon" />    
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        .form-body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #203340, #FCE4EC);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .welcome-body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url('https://static.vecteezy.com/system/resources/previews/015/286/176/original/abstract-health-healthcare-icons-and-symbols-health-plus-treatment-and-doctor-holding-stethoscope-concept-treatment-or-online-clinic-health-insurance-vector.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .welcome-container {
+            background-color: #000e5b;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: rgba(255, 255, 255, 0.01); /* 10% opacity white background */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.01);
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            display: none; /* Initially hidden */
+        }
+
+        .container{
+            background-image: url('https://i.pinimg.com/736x/68/e2/8e/68e28ed0b855b2a7f5f181b9a05dac73.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-color: rgba(255, 255, 255, 0.01); /* 10% opacity white background */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.01);
+            max-width: 600px;
+            width: 90%;
+            text-align: center;
+            display: none; /* Initially hidden */
+        }
+
+        .additional-image-container {
+            width: 100%;
+            height: 300px; /* Adjust the height as needed */
+            background-image: url('path/to/your/image.jpg');
+            background-size: cover;
+            background-position: center;
+            margin-top: 50px; /* Adjust the margin as needed */
+        }       
+
+
+        .container.active, .welcome-container.active {
+            display: block; /* Show active container */
+        }
+
+        h1 {
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            color: #000000;
+            margin-bottom: 25px;
+        }
+
+        p {
+            color: #000000;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            color: #ffffff;
+            margin-bottom: 25px;
+        }
+
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        label {
+            text-align: left;
+            font-size: 1rem;
+            color: #ffffff;
+        }
+
+        input[type="text"], input[type="number"], input[type="date"], select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        button {
+            background: linear-gradient(135deg, #1336ff, #7986CB);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #5C6BC0;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        #pregnancy-field {
+            display: none;
+        }
+    </style>
+    <script>
+        // Function to show or hide the "Number of Pregnancies" field based on the sex selected
+        function togglePregnancyInput() {
+          var sex = document.getElementById('sex').value; // Get selected sex value
+          var pregnancyInput = document.getElementById('num_pregnancies');
+          
+          // If 'Male' is selected, hide the pregnancy input
+          if (sex === 'male') {
+            pregnancyInput.style.display = 'block';
+            pregnancyInput.value = 0;
+            pregnancyInput.setAttribute('readonly', true);
+          } else {
+            // If 'Female' is selected, show the pregnancy input
+            pregnancyInput.style.display = 'block';
+            pregnancyInput.removeAttribute('readonly');
+          }
+        }
+      </script>
+
+<script>
+    // Function to show or hide the "Number of Pregnancies" field based on the sex selected
+    function togglePregnancyInput() {
+        var sex = document.getElementById('sex').value; // Get selected sex value
+        var pregnancyInput = document.getElementById('num_pregnancies');
+
+        // If 'Male' is selected, set the pregnancy input to 0 and make it read-only
+        if (sex === 'male') {
+            pregnancyInput.value = 0;
+            pregnancyInput.setAttribute('readonly', true);
+        } else {
+            // If 'Female' is selected, make the pregnancy input editable
+            pregnancyInput.value = '';
+            pregnancyInput.removeAttribute('readonly');
+        }
+    }
+
+    // Ensure the correct state of pregnancy field on load
+    togglePregnancyInput();
+</script>
+
+<script>
+    // Function to validate the form inputs
+    function validateForm() {
+        // Get the values of the input fields
+        var glucose = document.getElementById("glucose").value;
+        var skinThickness = document.getElementById("skin_thickness").value;
+        var numPregnancies = document.getElementById("num_pregnancies").value;
+        var bmi = document.getElementById("bmi").value;
+        var bloodPressure = document.getElementById("blood_pressure").value;
+        var diabetesPedigreeFunction = document.getElementById("DiabetesPedigreeFunction").value;
+        var insulin = document.getElementById("Insulin").value;
+
+        // Validate the input values
+        if (glucose < 20 || glucose > 230) {
+            alert("Glucose level should be between 20 and 230.");
+            return false;
+        }
+        if (skinThickness < 2 || skinThickness > 80) {
+            alert("Skin thickness should be between 2 and 80.");
+            return false;
+        }
+        if (numPregnancies < 0 || numPregnancies > 50) {
+            alert("Number of pregnancies should be between 0 and 50.");
+            return false;
+        }
+        if (bmi < 10 || bmi > 60) {
+            alert("BMI should be between 10 and 60.");
+            return false;
+        }
+        if (bloodPressure < 40 || bloodPressure > 150) {
+            alert("Blood pressure should be between 40 and 150.");
+            return false;
+        }
+        if (diabetesPedigreeFunction < 0 || diabetesPedigreeFunction > 2.5) {
+            alert("Diabetes Pedigree Function should be between 0 and 2.5.");
+            return false;
+        }
+        if (insulin < 0.01 || insulin > 200) {
+            alert("Insulin should be between 0.01 and 200.");
+            return false;
+        }
+
+        // If all validations pass, allow the form to be submitted
+        return true;
+    }
+</script>
+
+</head>
+<body class="welcome-body">
+    <!-- Welcome Page -->
+    <div class="welcome-container active" id="welcomePage">
+        <h1>Welcome to Diabetes Prediction</h1>
+        <p>Click the button below to get started with your health prediction journey!</p>
+        <button onclick="startApp()">Get Started</button>
+    </div>
+
+    <!-- Main Form Page -->
+    <div class="container" id="formPage">
+        <h2>Diabetes Prediction</h1>
+        <p style="color: #ffffff;">Please fill out the details below to proceed:</p>
+        <form method="post">
+            {% csrf_token %}
+            <label for="first_name">First Name:</label>
+            <input type="text" id="first_name" name="first_name" min="2" pattern="[A-Za-zÀ-ÿ' -]+" title="Only alphabetic characters are allowed" placeholder="Enter your first name" required>
+            
+            <label for="last_name">Last Name:</label>
+            <input type="text" id="last_name" name="last_name" min="2" pattern="[A-Za-zÀ-ÿ' -]+" title="Only alphabetic characters are allowed" placeholder="Enter your last name" required>
+            
+            <label for="sex">Sex:</label>
+            <select id="sex" name="sex" onchange="togglePregnancyInput()" required>
+                <option value="">Select sex</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+            
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" min="1900-01-01" max="2019-12-31" required>
+            
+            <p></p>
+            
+            <label for="glucose">Glucose:</label>
+            <input type="number" id="glucose" name="glucose" placeholder="Enter your glucose level" min="20" max="230" step="0.01" required>
+            
+            <label for="skin_thickness">Skin Thickness:</label>
+            <input type="number" id="skin_thickness" name="skin_thickness" placeholder="Enter your skin thickness" min="2" max="80" step="0.01" required>
+            
+            <label for="num_pregnancies">Number of Pregnancies:</label>
+            <input type="number" id="num_pregnancies" name="num_pregnancies" placeholder="Enter the number of pregnancies" min="0" max="50" step="1" required>
+            
+            <label for="bmi">BMI:</label>
+            <input type="number" id="bmi" name="bmi" placeholder="Enter your BMI" min="10" max="60" step="0.01" required>
+            
+            <label for="blood_pressure">Blood Pressure:</label>
+            <input type="number" id="blood_pressure" name="blood_pressure" placeholder="Enter your blood pressure" min="40" max="150" step="0.01" required>
+            
+            <label for="DiabetesPedigreeFunction">Diabetes Pedigree Function:</label>
+            <input type="number" id="DiabetesPedigreeFunction" name="DiabetesPedigreeFunction" min="0" max="2.5" placeholder="Enter your DiabetesPedigreeFunction" step="0.001" required>
+            
+            <label for="Insulin">Insulin:</label>
+            <input type="number" id="Insulin" name="Insulin" placeholder="Enter your Insulin" min="0.01" max="200" step="0.01" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+
+<script>
+    // Show the main form and hide the welcome page
+    function startApp() {
+        document.getElementById('welcomePage').classList.remove('active');
+        document.getElementById('formPage').classList.add('active');
+    }
+
+    /* Toggle pregnancy input based on sex selection
+    function togglePregnancyInput() {
+        const sex = document.getElementById('sex').value;
+        const pregnancyField = document.getElementById('pregnancy-field');
+        const pregnancyInput = document.getElementById('num_pregnancies');
+
+        if (sex === 'male') {
+            pregnancyField.style.display = 'none';
+            pregnancyInput.value = 0; // Set to 0 for males
+            pregnancyInput.setAttribute('readonly', true);
+        } else {
+            pregnancyField.style.display = 'block';
+            pregnancyInput.value = ''; // Clear value for females
+            pregnancyInput.removeAttribute('readonly');
+        }
+    }
+
+    
+
+    // Ensure the correct state of pregnancy field on load
+    togglePregnancyInput();*/
+</script>
+
+</html>
