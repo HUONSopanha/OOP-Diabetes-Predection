@@ -21,17 +21,9 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from user.views import(
-    home_screen_view,
-    success_view,
-    success1_view,
-    diabetes_blog,
-    about_us,
+    home_screen_view
 )
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home_screen_view, name= 'home'),
-    path('success/', success_view, name='success_page'),
-    path('success1/', success1_view, name='success1_page'),
-    path('diabetes_blog/', diabetes_blog, name = 'diabetes_blog'),
-    path('about_us/', about_us, name = 'about_us')
+    path('', home_screen_view, name= 'home')
 ]
