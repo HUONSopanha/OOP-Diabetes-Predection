@@ -1,15 +1,11 @@
 {
-    
     "builds": [
-          {
-            "src": "diabetes_prediction/wsgi.py",
-            "use": "@vercel/python",
-            "config": {
-              "runtime": "python3.12.8",
-              "maxLambdaSize": "15mb"
-            }
-          }
-        ]
-      
-      
-}
+      {
+        "src": "diabetes_prediction/wsgi.py",
+        "use": "@vercel/python",
+        "config": {
+          "runtime": "python3.11"
+        }
+      }
+    ]
+  }
