@@ -1,0 +1,207 @@
+<html class="no-js" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diabetes Blog</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #ffffff;
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 999;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+
+        .logo img[alt="Logo 2"] {
+            width: 150px; /* Increase the width as desired */
+            height: auto; /* This will maintain the aspect ratio */
+        }
+
+        .school-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00358A;
+            margin-bottom: 5px;
+        }
+
+        .department-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #E53535;
+        }
+
+
+
+        .menu {
+            display: flex;
+            justify-content: center;
+        }
+
+        .menu ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .menu ul li {
+            margin: 0 20px;
+        }
+
+        .menu ul li a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .menu ul li a:hover {
+            color: #ffd700;
+        }
+
+        /* Content Styles */
+        .content-container {
+            max-width: 800px;
+            margin: 1500px auto; /* Increased the top margin to 120px */
+            padding: 40px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+            margin-bottom: 100px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .menu ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .menu ul li {
+                margin: 10px 0;
+            }
+
+            .container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://upload.wikimedia.org/wikipedia/en/f/f7/Institute_of_Technology_of_Cambodia_logo.png" alt="Logo 1">
+                <div>
+                    <div class="school-name">Institute of Technology of Cambodia</div>
+                    <div class="department-name">Department of Applied Mathematics and Statistics</div>
+                </div>
+                <img src="https://th.bing.com/th/id/OIP.9_NVZh7wq2gK-GMTE8mDKQHaGF?rs=1&pid=ImgDetMain" alt="Logo 2">
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'diabetes_blog' %}">Diabetes Blog</a></li>
+                    <li><a href="{% url 'about_us' %}">About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1> </h1>
+        <h1> </h1>
+        <h1> Understanding Diabetes</h1>
+        <h1>Understanding Diabetes</h1>
+        <p style="text-align: justify;">{{ paragraph_1 }}</p>
+        <p style="text-align: justify;">{{ paragraph_2 }}</p>
+        <div class="image-container">
+            <img src="https://th.bing.com/th/id/R.a94b8e0798319b0e553687d483d6ad4f?rik=Ei%2bNwN954k3ITQ&pid=ImgRaw&r=0" alt="Diabetes Image" alt="Diabetes Image">
+        </div>
+        <p style="text-align: justify;">{{ paragraph_3 }}</p>
+        <p style="text-align: justify;">{{ paragraph_4 }}</p>
+        <div class="image-container">
+            <img src="https://cdn1.byjus.com/wp-content/uploads/2016/07/Diabetes1.jpg" alt="Diabetes Image">
+        </div>
+        <p style="text-align: justify;">{{ paragraph_5 }}</p>
+        <div class="image-container">
+            <img src="https://th.bing.com/th/id/R.be8467dbb03ead2d1ca27283f1b0bac7?rik=POfmovHYg0JbWA&pid=ImgRaw&r=0" alt="Diabetes Image">
+        </div>
+        <div class="text-center mt-5">
+            <a href="{% url 'home' %}" class="btn btn-primary">Go Back</a>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
